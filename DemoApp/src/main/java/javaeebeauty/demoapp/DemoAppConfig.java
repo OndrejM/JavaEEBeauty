@@ -1,6 +1,7 @@
 package javaeebeauty.demoapp;
 
 import javaeebeauty.core.ApplicationConfiguration;
+import static javaeebeauty.demoapp.Constants.SESSION_TIMEOUT_IN_MINUTES;
 import javaeebeauty.web.session.WebSessionConfig;
 import javax.enterprise.context.*;
 
@@ -8,6 +9,6 @@ import javax.enterprise.context.*;
 @Dependent
 public class DemoAppConfig implements WebSessionConfig {
     public Integer getSessionTimeout() {
-        return 30;
+        return SESSION_TIMEOUT_IN_MINUTES;
     }
 }
