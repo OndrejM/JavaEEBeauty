@@ -1,8 +1,9 @@
 package javaeebeauty.demoapp;
 
-import javaeebeauty.core.ApplicationConfiguration;
 import javaeebeauty.demoapp.testsupport.TestPackager;
-import javax.inject.Inject;
+import javaeebeauty.web.session.control.WebSessionConfig;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -11,11 +12,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class DemoApplicationTest {
+@ApplicationScoped
+public class WebSessionTest {
 
-    @Inject
-    @ApplicationConfiguration
-    private DemoApplication demoApplication;
+    private WebSessionConfig config;
     
     @Deployment
     public static WebArchive createDeployment() {
@@ -23,9 +23,13 @@ public class DemoApplicationTest {
                 .addClass(DemoApplication.class);
     }
 
+    public void setConfig(@Observes WebSessionConfig config) {
+        this.config = config;
+    }
+
     @Test
     public void should_be_deployed() {
-        Assert.assertNotNull(demoApplication);
+        Assert.assertNotNull(config);
     }
 
 }
