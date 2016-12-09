@@ -15,12 +15,12 @@ public class DemoApplicationTest {
 
     @Inject
     @ApplicationConfiguration
-    private DemoApplication demoApplication;
+    private DemoAppConfig demoApplication;
     
     @Deployment
     public static WebArchive createDeployment() {
         return TestPackager.createDeploymentWithDependencies()
-                .addClass(DemoApplication.class);
+                .addClass(DemoAppConfig.class);
     }
 
     @Test

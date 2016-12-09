@@ -13,4 +13,16 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <name>JavaEEBeauty-session</name>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>1.2</version>
+        </dependency>
+    </dependencies>
 </project>
