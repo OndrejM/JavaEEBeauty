@@ -43,7 +43,7 @@ public class WebSessionTest {
     }
 
     @Test
-    public void session_timeout_should_configured_in_the_servlet_context() {
+    public void session_timeout_should_be_configured_in_the_container() {
         assertNotNull("session instance", session);
         assertEquals("session-timeout on instance", SESSION_TIMEOUT_IN_MINUTES * 60, session.getMaxInactiveInterval());
     }

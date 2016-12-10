@@ -1,35 +1,23 @@
 package javaeebeauty.web.session.control;
 
-import javaeebeauty.core.control.UndefinedConfigurationValueException;
-import javaeebeauty.web.session.WebSessionConfig;
+import javax.enterprise.context.ApplicationScoped;
+import javax.servlet.http.*;
 
+@ApplicationScoped
 public class WebSessionConfigurator {
 
-    private final Object providedConfigObject;
-    private final WebSessionConfig providedConfig;
+    private WebSessionConfigSnapshot configSnapshot;
 
-    public WebSessionConfigurator(Object providedConfig) {
-        this.providedConfigObject = providedConfig;
-        if (providedConfigObject instanceof WebSessionConfig) {
-            this.providedConfig = (WebSessionConfig) providedConfigObject;
-        } else {
-            this.providedConfig = null;
-        }
+    public void updateConfiguration(WebSessionConfigSnapshot configSnapshot) {
+        this.configSnapshot = configSnapshot;
     }
-
-    public WebSessionConfigSnapshot readConfig() {
-        WebSessionConfigSnapshot configSnapshot = new WebSessionConfigSnapshot();
-        configSnapshot.setSessionTimeout(readSessionTimeout());
-        return configSnapshot;
-    }
-
-    private Integer readSessionTimeout() {
-        if (providedConfig != null) {
-            try {
-                return providedConfig.getSessionTimeout();
-            } catch (UndefinedConfigurationValueException e) {
+    
+    public void configureSession(HttpSession session) {
+        if (configSnapshot != null) {
+            if (configSnapshot.getSessionTimeout() != null) {
+                session.setMaxInactiveInterval(configSnapshot.getSessionTimeout() * 60);
             }
         }
-        return null;
     }
+
 }
