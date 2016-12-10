@@ -19,9 +19,6 @@ import org.junit.runner.RunWith;
 public class WebSessionTest {
 
     @Inject
-    private TestContext context;
-    
-    @Inject
     private HttpSession session;
     
     @Deployment
@@ -30,29 +27,10 @@ public class WebSessionTest {
                 .addClass(DemoAppConfig.class);
     }
 
-    public void setConfig(@Observes WebSessionConfigSnapshot config) {
-        context.config = config;
-    }
-
-    @Test
-    public void session_timeout_should_be_found_in_the_app_config() {
-        final WebSessionConfigSnapshot config = context.config;
-        assertNotNull("session config", config);
-        assertNotNull("session-timeout", config.getSessionTimeout());
-        assertEquals("session-timeout", SESSION_TIMEOUT_IN_MINUTES, config.getSessionTimeout().intValue());
-    }
-
     @Test
     public void session_timeout_should_be_configured_in_the_container() {
         assertNotNull("session instance", session);
         assertEquals("session-timeout on instance", SESSION_TIMEOUT_IN_MINUTES * 60, session.getMaxInactiveInterval());
-    }
-
-    @ApplicationScoped
-    public static class TestContext {
-
-        private WebSessionConfigSnapshot config;
-
     }
 
 }

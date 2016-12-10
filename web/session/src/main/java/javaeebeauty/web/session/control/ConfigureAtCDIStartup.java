@@ -18,17 +18,21 @@ public class ConfigureAtCDIStartup {
 
     @Inject
     private Event<WebSessionConfigSnapshot> sessionConfiguredEvent;
-    
+
     @Inject
     private WebSessionConfigurator configurator;
-    
+
     public void configureWebSession(@Observes @Initialized(ApplicationScoped.class) Object event) {
         Object config = null;
         try {
             config = configProvider.get();
         } catch (RuntimeException e) {
-            Logging.getLogger(this).log(Level.FINE, e, 
-                    () -> "Did not find application configuration object, will not attempt to configure the application.");
+            final Logger logger = Logging.getLogger(this);
+            if (logger.isLoggable(Level.FINE)) {
+                logger.log(Level.FINE,
+                        "Did not find application configuration object, will not attempt to configure the application.",
+                        e);
+            }
         }
         if (config != null) {
             final WebSessionConfigSnapshot configSnapshot

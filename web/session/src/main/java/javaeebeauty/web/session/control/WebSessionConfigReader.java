@@ -1,17 +1,16 @@
 package javaeebeauty.web.session.control;
 
-import javaeebeauty.core.control.UndefinedConfigurationValueException;
-import javaeebeauty.web.session.WebSessionConfig;
+import javaeebeauty.web.session.*;
 
 public class WebSessionConfigReader {
 
     private final Object providedConfigObject;
-    private final WebSessionConfig providedConfig;
+    private final ConfiguringWebSession providedConfig;
 
     public WebSessionConfigReader(Object providedConfig) {
         this.providedConfigObject = providedConfig;
-        if (providedConfigObject instanceof WebSessionConfig) {
-            this.providedConfig = (WebSessionConfig) providedConfigObject;
+        if (providedConfigObject instanceof ConfiguringWebSession) {
+            this.providedConfig = (ConfiguringWebSession) providedConfigObject;
         } else {
             this.providedConfig = null;
         }
@@ -19,17 +18,14 @@ public class WebSessionConfigReader {
 
     public WebSessionConfigSnapshot readConfig() {
         WebSessionConfigSnapshot configSnapshot = new WebSessionConfigSnapshot();
-        configSnapshot.setSessionTimeout(readSessionTimeout());
+        //configSnapshot.setSessionTimeout(readSessionTimeout());
+        readFromProvidedConfig(configSnapshot);
         return configSnapshot;
     }
 
-    private Integer readSessionTimeout() {
+    private void readFromProvidedConfig(WebSessionConfigSnapshot configSnapshot) {
         if (providedConfig != null) {
-            try {
-                return providedConfig.getSessionTimeout();
-            } catch (UndefinedConfigurationValueException e) {
-            }
+            providedConfig.configureWebSession(configSnapshot);
         }
-        return null;
     }
 }
