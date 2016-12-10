@@ -14,5 +14,6 @@
     <module>DemoApp</module>
     <module>core</module>
     <module>web</module>
+    <module>tests</module>
   </modules>
 </project>

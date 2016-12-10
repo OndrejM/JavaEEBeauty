@@ -1,4 +1,4 @@
-package javaeebeauty.demoapp.testsupport;
+package javaeebeauty.tests.testsupport;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;

@@ -1,7 +1,8 @@
-package javaeebeauty.demoapp;
+package javaeebeauty.tests;
 
 import javaeebeauty.core.ApplicationConfiguration;
-import javaeebeauty.demoapp.testsupport.TestPackager;
+import javaeebeauty.demoapp.DemoAppConfig;
+import javaeebeauty.tests.testsupport.TestPackager;
 import javax.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;

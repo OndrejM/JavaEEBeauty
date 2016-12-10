@@ -1,7 +1,7 @@
-package javaeebeauty.demoapp;
+package javaeebeauty.tests;
 
-import static javaeebeauty.demoapp.Constants.SESSION_TIMEOUT_IN_MINUTES;
-import javaeebeauty.demoapp.testsupport.TestPackager;
+import static javaeebeauty.tests.testsupport.Constants.SESSION_TIMEOUT_IN_MINUTES;
+import javaeebeauty.tests.testsupport.TestPackager;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;

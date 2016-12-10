@@ -1,7 +1,7 @@
-package javaeebeauty.demoapp;
+package javaeebeauty.tests;
 
 import javaeebeauty.core.ApplicationConfiguration;
-import static javaeebeauty.demoapp.Constants.SESSION_TIMEOUT_IN_MINUTES;
+import static javaeebeauty.tests.testsupport.Constants.SESSION_TIMEOUT_IN_MINUTES;
 import javaeebeauty.web.session.*;
 import javax.enterprise.context.*;
 

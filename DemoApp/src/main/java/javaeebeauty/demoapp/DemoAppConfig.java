@@ -1,16 +1,15 @@
 package javaeebeauty.demoapp;
 
 import javaeebeauty.core.ApplicationConfiguration;
-import static javaeebeauty.demoapp.Constants.SESSION_TIMEOUT_IN_MINUTES;
 import javaeebeauty.web.session.*;
 import javax.enterprise.context.*;
 
 @ApplicationConfiguration
-@ConfigureWebSession(sessionTimeout = SESSION_TIMEOUT_IN_MINUTES)
+@ConfigureWebSession(sessionTimeout = 30)
 @Dependent
 public class DemoAppConfig implements ConfiguringWebSession {
     @Override
     public void configureWebSession(WebSessionConfig config) {
-        config.setSessionTimeout(SESSION_TIMEOUT_IN_MINUTES);
+        config.setSessionTimeout(20);
     }
 }
