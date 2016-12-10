@@ -16,6 +16,6 @@ public interface WebSessionConfig {
     
     Set<SessionTrackingMode> getSessionTrackingModes();
     
-    void addSessionTrackingModes(SessionTrackingMode... modes);
+    void addSessionTrackingMode(SessionTrackingMode... modes);
 
 }

@@ -13,3 +13,4 @@ hs_err_pid*
 /core/target/
 /web/session/target/
 /DemoApp/target/
+/tests/target/

@@ -22,7 +22,7 @@ public class WebSessionInterfaceTest {
     @Deployment
     public static WebArchive createDeployment() {
         return TestPackager.createDeploymentWithDependencies()
-                .addClass(WebSessionAppConfigInterface.class);
+                .addClass(WebSessionInterfaceAppConfig.class);
     }
 
     @Test

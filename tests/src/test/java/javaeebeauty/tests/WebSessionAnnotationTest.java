@@ -22,7 +22,7 @@ public class WebSessionAnnotationTest {
     @Deployment
     public static WebArchive createDeployment() {
         return TestPackager.createDeploymentWithDependencies()
-                .addClass(WebSessionAppConfigAnnotation.class);
+                .addClass(WebSessionAnnotationAppConfig.class);
     }
 
     @Test

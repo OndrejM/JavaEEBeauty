@@ -29,7 +29,7 @@ public class WebSessionConfigSnapshot implements WebSessionConfig {
         return trackingModes;
     }
 
-    public void addSessionTrackingModes(SessionTrackingMode... modes) {
+    public void addSessionTrackingMode(SessionTrackingMode... modes) {
         for (SessionTrackingMode mode : modes) {
             getSessionTrackingModes().add(mode);
         }

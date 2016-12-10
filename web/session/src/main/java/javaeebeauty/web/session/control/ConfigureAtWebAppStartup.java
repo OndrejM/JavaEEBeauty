@@ -1,12 +1,12 @@
 package javaeebeauty.web.session.control;
 
 import java.util.logging.*;
-import javaeebeauty.core.ApplicationConfiguration;
 import javaeebeauty.core.boundary.Logging;
 import javax.enterprise.event.*;
 import javax.inject.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebListener;
+import javaeebeauty.core.ApplicationConfiguration;
 
 @WebListener
 public class ConfigureAtWebAppStartup implements ServletContextListener {

@@ -1,5 +1,6 @@
 package javaeebeauty.web.session.control;
 
+import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -26,8 +27,11 @@ public class WebSessionConfigurator {
     }
     
     public void configureServletContext(ServletContext ctx) {
-        ctx.setSessionTrackingModes(configSnapshot.getSessionTrackingModes());
+        addSessionTrackingModes(ctx);
+        updateSessionCookieConfig(ctx);
+    }
 
+    private void updateSessionCookieConfig(ServletContext ctx) {
         final SessionCookieConfig cookieConf = ctx.getSessionCookieConfig();
         final SessionCookieConfigSnapshot cookieConfSnapshot = configSnapshot.getSessionCookieConfig();
         if (cookieConfSnapshot.getName() != null) {
@@ -51,6 +55,12 @@ public class WebSessionConfigurator {
         if (cookieConfSnapshot.isMaxAgeSet()) {
             cookieConf.setMaxAge(cookieConfSnapshot.getMaxAge());
         }
+    }
+
+    private void addSessionTrackingModes(ServletContext ctx) {
+        Set<SessionTrackingMode> trackingModes = ctx.getEffectiveSessionTrackingModes();
+        trackingModes.addAll(configSnapshot.getSessionTrackingModes());
+        ctx.setSessionTrackingModes(trackingModes);
     }
 
 }

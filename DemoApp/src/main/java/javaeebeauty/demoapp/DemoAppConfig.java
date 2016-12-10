@@ -1,8 +1,8 @@
 package javaeebeauty.demoapp;
 
-import javaeebeauty.core.ApplicationConfiguration;
 import javaeebeauty.web.session.*;
 import javax.enterprise.context.*;
+import javaeebeauty.core.ApplicationConfiguration;
 
 @ApplicationConfiguration
 @ConfigureWebSession(sessionTimeout = 30)
