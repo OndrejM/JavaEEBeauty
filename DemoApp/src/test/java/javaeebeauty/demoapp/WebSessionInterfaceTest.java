@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
 @ApplicationScoped
-public class WebSessionTest {
+public class WebSessionInterfaceTest {
 
     @Inject
     private HttpSession session;
@@ -22,7 +22,7 @@ public class WebSessionTest {
     @Deployment
     public static WebArchive createDeployment() {
         return TestPackager.createDeploymentWithDependencies()
-                .addClass(DemoAppConfig.class);
+                .addClass(WebSessionAppConfigInterface.class);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package javaeebeauty.web.session.control;
 
+import javaeebeauty.core.boundary.Constants;
 import javaeebeauty.web.session.*;
 
 public class WebSessionConfigReader {
@@ -18,7 +19,7 @@ public class WebSessionConfigReader {
 
     public WebSessionConfigSnapshot readConfig() {
         WebSessionConfigSnapshot configSnapshot = new WebSessionConfigSnapshot();
-        //configSnapshot.setSessionTimeout(readSessionTimeout());
+        readFromAnnotation(configSnapshot);
         readFromProvidedConfig(configSnapshot);
         return configSnapshot;
     }
@@ -26,6 +27,15 @@ public class WebSessionConfigReader {
     private void readFromProvidedConfig(WebSessionConfigSnapshot configSnapshot) {
         if (providedConfig != null) {
             providedConfig.configureWebSession(configSnapshot);
+        }
+    }
+
+    private void readFromAnnotation(WebSessionConfigSnapshot configSnapshot) {
+        final ConfigureWebSession annotation = providedConfigObject.getClass().getAnnotation(ConfigureWebSession.class);
+        if (annotation != null) {
+            if (annotation.sessionTimeout() != Constants.INT_NOT_SET) {
+                configSnapshot.setSessionTimeout(annotation.sessionTimeout());
+            }
         }
     }
 }

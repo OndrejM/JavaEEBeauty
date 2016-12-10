@@ -8,9 +8,5 @@ import javax.enterprise.context.*;
 @ApplicationConfiguration
 @ConfigureWebSession(sessionTimeout = SESSION_TIMEOUT_IN_MINUTES)
 @Dependent
-public class DemoAppConfig implements ConfiguringWebSession {
-    @Override
-    public void configureWebSession(WebSessionConfig config) {
-        config.setSessionTimeout(SESSION_TIMEOUT_IN_MINUTES);
-    }
+public class WebSessionAppConfigAnnotation {
 }
