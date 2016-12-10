@@ -3,24 +3,22 @@ package javaeebeauty.web.session.control;
 import java.util.logging.*;
 import javaeebeauty.core.ApplicationConfiguration;
 import javaeebeauty.core.boundary.Logging;
-import javax.enterprise.context.*;
 import javax.enterprise.event.*;
 import javax.inject.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebListener;
 
-@Dependent
-public class ConfigureAtCDIStartup {
+@WebListener
+public class ConfigureAtWebAppStartup implements ServletContextListener {
 
     @Inject
     @ApplicationConfiguration
     private Provider<Object> configProvider;
 
     @Inject
-    private Event<WebSessionConfigSnapshot> sessionConfiguredEvent;
-
-    @Inject
     private WebSessionConfigurator configurator;
 
-    public void configureWebSession(@Observes @Initialized(ApplicationScoped.class) Object event) {
+    public void configureWebSession(ServletContext servletContext) {
         Object config = null;
         try {
             config = configProvider.get();
@@ -36,7 +34,14 @@ public class ConfigureAtCDIStartup {
             final WebSessionConfigSnapshot configSnapshot
                     = new WebSessionConfigReader(config).readConfig();
             configurator.updateConfiguration(configSnapshot);
-            sessionConfiguredEvent.fire(configSnapshot);
+            configurator.configureServletContext(servletContext);
         }
+    }
+
+    public void contextInitialized(ServletContextEvent sce) {
+        configureWebSession(sce.getServletContext());
+    }
+
+    public void contextDestroyed(ServletContextEvent sce) {
     }
 }
