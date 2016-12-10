@@ -2,9 +2,7 @@ package javaeebeauty.demoapp;
 
 import static javaeebeauty.demoapp.Constants.SESSION_TIMEOUT_IN_MINUTES;
 import javaeebeauty.demoapp.testsupport.TestPackager;
-import javaeebeauty.web.session.control.WebSessionConfigSnapshot;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import org.jboss.arquillian.container.test.api.Deployment;
